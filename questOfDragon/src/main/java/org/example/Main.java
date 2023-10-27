@@ -7,16 +7,15 @@ package org.example;
  Made by Linus Boström.
 */
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
     private static Scanner sc = new Scanner(System.in);
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         Art art = new Art();
         art.printDragon();
         System.out.println("Welcome to Quest of Dragon!");
-        System.out.println("In a kingdom far, far away a princess is being held captive by a dragon");
+        System.out.println("In a kingdom far, far away a princess is being held captive by a dragon.");
         System.out.println("You are the only one that can rescue her, what is your name knight?");
         String knightName = sc.nextLine();
         Player player = new Player(knightName,50, 5);
@@ -27,22 +26,6 @@ public class Main {
         Game game = new Game(player, dragon, shield, sword, armor);
         game.gameStart();
 
-
-
-
-
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-

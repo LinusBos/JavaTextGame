@@ -5,12 +5,17 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Art {
-    public void printDragon() throws FileNotFoundException {
+    // Prints the ASCII art.
+    public void printDragon() {
         File dragon = new File("src/main/resources/dragonASCII");
-        Scanner sc = new Scanner(dragon);
+        Scanner sc;
+        try {
+            sc = new Scanner(dragon);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         while(sc.hasNextLine()){
-            String print = sc.nextLine();
-            System.out.println(print);
+            System.out.println(sc.nextLine());
         }
     }
 }

@@ -11,8 +11,8 @@ public class Game {
     private Sword sword;
     private Armor armor;
 
-    private String[] options;
-    private String answer;
+    private String[] options; // Possible inputs from the user/player
+    private String answer; // The input from the user that exists in options[].
 
     private boolean quit = false;
 
@@ -24,6 +24,8 @@ public class Game {
         this.armor = armor;
 
     }
+
+    // The general game-loop that covers all actions that can be repeated.
     private void gameLoop() {
 
         while(!quit && player.isAlive() && dragon.isAlive() && !dragon.isPrincessRescued()) {
@@ -53,8 +55,9 @@ public class Game {
     }
     // Loop until the combat is finished.
     private void combatLoop() {
-
+        // The options are to either attack or dodge.
         options = new String[]{"dodge","attack"};
+        // Calculate the damage for player and dragon based on inventory.
         int playerDamage = player.getAttackPower();
         int dragonDamage = dragon.getAttackPower();
         for (GameObject gameObject : player.getInventory()) {
@@ -67,7 +70,7 @@ public class Game {
 
 
         while (player.isAlive() && dragon.isAlive()) {
-            System.out.println("The dragon gets angry and ready to attack");
+            System.out.println("The dragon gets angry and is ready to attack");
             System.out.println("Do you try to Dodge or Attack?");
             answer = inputDecision(options);
             if (answer.equals("dodge")) {
@@ -93,7 +96,7 @@ public class Game {
                 System.out.println("The dragon seems tired from the attack.");
                 System.out.println("Do you attack or dodge?");
                 answer = inputDecision(options);
-                if (answer.equals("attack") && diceRoll() > 1){
+                if (answer.equals("attack") && diceRoll() > 1) {
 
                     System.out.println("You managed to hit the dragon!");
                     System.out.println(dragon.getName() + " loses " + playerDamage + " hp and now have " + (dragon.getHealthPoints()-playerDamage) + " hp left!");
@@ -152,9 +155,9 @@ public class Game {
             if (decision.equals("")) {
                 System.out.print("Wrong input, possible inputs are: ");
                 for (String s: choice) {
-                    System.out.println(s + " ");
+                    System.out.print("\"" + s + "\" ");
                 }
-                System.out.println("Try again!");
+                System.out.println("\nTry again!");
             } else{
                 break;
             }
@@ -168,7 +171,7 @@ public class Game {
      * @return a random integer n where 1 <= n <= 6
      */
     private int diceRoll() {
-        return random.nextInt(1,6);
+        return random.nextInt(1,7);
 
     }
 
@@ -220,6 +223,7 @@ public class Game {
         }else {
             System.out.println("There is nothing you need in the stables.");
         }
+        System.out.println("You leave the stables and head back.");
 
 
     }
